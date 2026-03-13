@@ -1,0 +1,9 @@
+.my-carousel{
+    overflow-x: scroll;
+    gap: 10px;
+}
+.my-carousel div{
+    min-width: 300px;
+    background-color: rgb(54, 57, 57);
+    color: aliceblue;
+}
