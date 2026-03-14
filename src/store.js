@@ -13,7 +13,11 @@ export const initialStore=()=>{
         background: null,
       }
     ],
-    people:JSON.parse(localStorage.getItem("people")) || []
+    people:JSON.parse(localStorage.getItem("people")) || [],
+    planets:JSON.parse(localStorage.getItem("planets")) || [],
+    vehicles:JSON.parse(localStorage.getItem("vehicles")) || [],
+    favorites: []
+
   }
 }
 
@@ -31,7 +35,25 @@ export default function storeReducer(store, action = {}) {
         return{
           ...store,
           people: action.payload
+        };
+         case 'SET_PLANETS':
+        return{
+          ...store,
+          planets: action.payload
+        };
+            case 'SET_VEHICLES':
+        return{
+          ...store,
+          vehicles: action.payload
+        };
+            case 'SET_FAV':
+        return{
+          ...store,
+          favorites:[...store, action.payload]
         }
+
+
+
     default:
       throw Error('Unknown action.');
   }    
