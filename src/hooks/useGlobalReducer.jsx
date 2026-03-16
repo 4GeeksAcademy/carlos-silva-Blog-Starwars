@@ -15,6 +15,8 @@ export function StoreProvider({ children }) {
     const [store, dispatch] = useReducer(storeReducer, initialStore())
     // Provide the store and dispatch method to all child components.
    
+
+    
     async function getAllPeople(){
      try {
           if (store.people.length <= 0){
@@ -55,14 +57,15 @@ export function StoreProvider({ children }) {
         
      }
     }
+
     
 
 
     useEffect(() => {
         getAllPeople()
          getAllPlanets()
-         getVehicles()
-
+         getAllVehicles()
+      
     },[] )
 
     return <StoreContext.Provider value={{ store, dispatch }}>

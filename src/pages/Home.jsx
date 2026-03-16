@@ -8,9 +8,12 @@ export const Home = () => {
 
 	const { store, dispatch } = useGlobalReducer()
 
-	useEffect(() => {
-		console.log("llamar api sw")
-	}, [])
+	function addFav(fav) {
+		console.log(fav)
+		dispatch({ type: "SET_FAV", payload: fav })
+	}
+
+	
 	return (
 		<div className="container">
 			<div>
@@ -27,7 +30,7 @@ export const Home = () => {
 										<p>Hair Color: {item.properties.birth_year}  </p>
 										<p>Gender: {item.properties.gender}  </p>
 										<Link to="/characters" className="btn btn-primary">Go to characters..</Link>
-
+									
 
 									</div>
 								</div>

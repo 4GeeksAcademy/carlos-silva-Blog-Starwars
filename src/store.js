@@ -1,5 +1,5 @@
-export const initialStore=()=>{
-  return{
+export const initialStore = () => {
+  return {
     message: null,
     todos: [
       {
@@ -13,48 +13,56 @@ export const initialStore=()=>{
         background: null,
       }
     ],
-    people:JSON.parse(localStorage.getItem("people")) || [],
-    planets:JSON.parse(localStorage.getItem("planets")) || [],
-    vehicles:JSON.parse(localStorage.getItem("vehicles")) || [],
-    favorites:[]
+    people: JSON.parse(localStorage.getItem("people")) || [],
+    planets: JSON.parse(localStorage.getItem("planets")) || [],
+    vehicles: JSON.parse(localStorage.getItem("vehicles")) || [],
+    favorites: []
 
   }
 }
 
 export default function storeReducer(store, action = {}) {
-  switch(action.type){
+  switch (action.type) {
     case 'add_task':
 
-      const { id,  color } = action.payload
+      const { id, color } = action.payload
 
       return {
         ...store,
         todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
       };
-      case 'SET_PEOPLE':
-        return{
-          ...store,
-          people: action.payload
-        };
-         case 'SET_PLANETS':
-        return{
-          ...store,
-          planets: action.payload
-        };
-            case 'SET_VEHICLES':
-        return{
-          ...store,
-          vehicles: action.payload
-        };
-            case 'SET_FAV':
-        return{
-          ...store,
-          favorites:[...store, action.payload]
-        }
+    case 'SET_PEOPLE':
+      return {
+        ...store,
+        people: action.payload
+      };
+    case 'SET_PLANETS':
+      return {
+        ...store,
+        planets: action.payload
+      };
+    case 'SET_VEHICLES':
+      return {
+        ...store,
+        vehicles: action.payload
+      };
+    case 'SET_FAV':
+     
+      const exists = store.favorites.some(fav => fav.uid === action.payload.uid);
+      if (exists) return store;
+       return {
+        ...store,
+        favorites: [...store.favorites, action.payload] // <--- AQUÍ: usa store.favorites, no store
+      };
+      case 'REMOVE_FAV':
+    return {
+        ...store,
+        favorites: store.favorites.filter((fav) => fav.uid !== action.payload)
+    };
 
 
 
     default:
       throw Error('Unknown action.');
-  }    
+  }
 }

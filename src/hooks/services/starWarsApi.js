@@ -16,7 +16,6 @@ export async function getPeople() {
         
     }
 }
-   
 
 
 

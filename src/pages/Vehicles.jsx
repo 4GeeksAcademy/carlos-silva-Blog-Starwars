@@ -1,16 +1,17 @@
 
 import { useEffect } from "react";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
-
+import { Link } from "react-router-dom";
 
 
 export const Vehicles = () => {
 
     const { store, dispatch } = useGlobalReducer()
-    useEffect(() => {
-        console.log("llamar api sw")
+       function addFav(fav) {
+		console.log(fav)
+		dispatch({ type: "SET_FAV", payload: fav })
+	}
 
-    }, [])
     return (
         <div className="container">
             <h1 className="text-dark d-flex justify-content-center align-items-center">Vehicles: details and favorites items</h1>
@@ -25,11 +26,11 @@ export const Vehicles = () => {
                                     <img src={`https://raw.githubusercontent.com/breatheco-de/swapi-images/refs/heads/master/public/images/vehicles/${item.uid}.jpg`} className="card-img-top" alt="..." />
                                     <div className="card-body">
                                         <h5 className="card-title">{item.properties.name}</h5>
-                                        <p>Model: {item.properties.model}  </p>
-                                        <p>Manufacturer: {item.properties.manufacturer}  </p>
-                                        <p>Consumables: {item.properties.consumables}  </p>
+                                        <p><strong>Model:</strong> {item.properties.model}  </p>
+                                        <p><strong>Manufacturer: </strong>{item.properties.manufacturer}  </p>
+                                        <p><strong>Consumables:</strong> {item.properties.consumables}  </p>
                                         <div className=" d-flex justify-content-between align-items-center">
-                                            <a href="#" className="btn btn-primary">Go somewhere</a>
+                                            <Link to={`/vehicles/${item.uid}`} className="btn btn-primary">Go to details</Link>
                                             <button
                                                 className="btn btn-danger"
                                                 onClick={() => addFav(item)}
