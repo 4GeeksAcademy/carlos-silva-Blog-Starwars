@@ -16,7 +16,7 @@ export const initialStore=()=>{
     people:JSON.parse(localStorage.getItem("people")) || [],
     planets:JSON.parse(localStorage.getItem("planets")) || [],
     vehicles:JSON.parse(localStorage.getItem("vehicles")) || [],
-    favorites: []
+    favorites:[]
 
   }
 }

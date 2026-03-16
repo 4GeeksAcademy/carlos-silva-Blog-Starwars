@@ -40,6 +40,8 @@ export function StoreProvider({ children }) {
         
      }
     }
+    
+
 
        async function getAllVehicles(){
      try {
@@ -53,7 +55,7 @@ export function StoreProvider({ children }) {
         
      }
     }
-
+    
 
 
     useEffect(() => {

@@ -16,6 +16,9 @@ export async function getPeople() {
         
     }
 }
+   
+
+
 
 export async function getPlanets() {
     try {
